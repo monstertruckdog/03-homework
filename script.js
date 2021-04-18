@@ -190,22 +190,34 @@ function generatePassword(userSelections) {
     console.log(`TEST | FROM for LOOP | finalPw:  ${finalPw}`)
     */
     var randParam = randParamList[Math.floor(Math.random() * randParamList.length)]
-    console.log(`TEST | FROM generatePassword | RANDOMLY SELECTED PARAMETER CATEGORY INDEX VALUE:  ${randParam}`)
-    if (userSelections[randParam] === 0) {
+    console.log(`TEST | FROM generatePassword | RANDOMLY SELECTED PARAMETER CATEGORY INDEX VALUE (193):  ${randParam}`)
+    console.log(`TEST | FROM generatePassword | userSelections:  ${userSelections}`)
+    console.log(`TEST | FROM generatePassword | userSelections @ INDEX randParam:  ${userSelections[randParam]}`)
+    console.log(`TEST | FROM generatePassword | randChar:  ${randChar}`)
+    console.log(`TEST | FROM generatePassword | randParam (197):  ${randParam}`)
+    if (randParam == 0) {
+      console.log(`TEST | FROM generatePassword | CATCH | randParam IS 0`)
       randChar = charLowerCase[Math.floor(Math.random() * charLowerCase.length)]
       console.log(`TEST | FROM generatePassword | randLc:  ${randChar}`)
-    } else if (userSelections[randParam] === 1) {
+    } else if (randParam == 1) {
+      console.log(`TEST | FROM generatePassword | CATCH | randParam IS 1`)
       randChar = charUpperCase[Math.floor(Math.random() * charUpperCase.length)]
       console.log(`TEST | FROM generatePassword | randUc:  ${randChar}`)
-    } else if (userSelections[randParam] === 2) {
+    } else if (randParam == 2) {
+      console.log(`TEST | FROM generatePassword | CATCH | randParam IS 2`)
       randChar = charNumeric[Math.floor(Math.random() * charNumeric.length)]
       console.log(`TEST | FROM generatePassword | randNum:  ${randChar}`)
-    } else if (userSelections[randParam] === 3) {
+    } else if (randParam == 3) {
+      console.log(`TEST | FROM generatePassword | CATCH | randParam IS 3`)
       randChar = charSpecial[Math.floor(Math.random() * charSpecial.length)]
       console.log(`TEST | FROM generatePassword | randSpecial:  ${randChar}`)
+    } else {
+      console.log(`TEST | FROM generatePassword | THIS DID NOT WORK`)
+      console.log(`TEST | FROM generatePassword | THIS DID NOT WORK | randParam (216):  ${randParam}`)
     }
-    // finalPw += randChar
-    randChar += finalPw
+    console.log(`TEST | FROM generatePassword | randChar  ${randChar}`)
+    finalPw += randChar
+    // randChar += finalPw
   // passwordText.innerText = finalPw
   }
   passwordText.innerText = finalPw
