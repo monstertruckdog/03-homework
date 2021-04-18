@@ -132,6 +132,7 @@ function generatePassword(userSelections) {
   // var randNum = ''
   //var randSpecial = ''
   var randParamList = []
+  var randChar = ''
   var finalPw = ''
   /* var stagingPwA = Math.floor(Math.random() * charLowerCase.length)
   var stagingPwB = charLowerCase[stagingPwA]
@@ -139,8 +140,25 @@ function generatePassword(userSelections) {
   */
   
   console.log(`TEST | FROM generatePassword | passwordLength:  ${passwordLength}`)
+
+  for (var i = 0; i < userSelections.length; i++) {
+    if (userSelections[i] === 'Y') {
+      randParamList.push([i])
+    }
+  }
+  console.log(`TEST | FROM generatePassword | userSelections:  ${randParamList}`)
+  console.log(`TEST | FROM generatePassword | userSelections:  ${typeof(randParamList)}`)
+  /*
+  if (userSelections[0] === 'Y') {
+    randParamList.push
+  } else if (userSelections[1] === 'Y') {
+    randParamList.push[1]
+  } else if (userSelections[2] === 'Y') {
+    randParamList.push[2]
+  */
+
   for (var i = 0; i < passwordLength; i++) {
-    console.log(`TEST | FROM generatePassword > FIRST LOOP | I VALUE:  ${i}`)
+    /* console.log(`TEST | FROM generatePassword > FIRST LOOP | I VALUE:  ${i}`)
     for (var i = 0; i < userSelections; i++) {
       if (userSelections[i] === 'Y') {
         randParamList.push[i]
@@ -170,5 +188,25 @@ function generatePassword(userSelections) {
     // stagingPwB += stagingPwA
     // console.log(`TEST | FROM for LOOP | stagingPwB:  ${randLc}`)
     console.log(`TEST | FROM for LOOP | finalPw:  ${finalPw}`)
+    */
+    var randParam = randParamList[Math.floor(Math.random() * randParamList.length)]
+    console.log(`TEST | FROM generatePassword | RANDOMLY SELECTED PARAMETER CATEGORY INDEX VALUE:  ${randParam}`)
+    if (userSelections[randParam] === 0) {
+      randChar = charLowerCase[Math.floor(Math.random() * charLowerCase.length)]
+      console.log(`TEST | FROM generatePassword | randLc:  ${randChar}`)
+    } else if (userSelections[randParam] === 1) {
+      randChar = charUpperCase[Math.floor(Math.random() * charUpperCase.length)]
+      console.log(`TEST | FROM generatePassword | randUc:  ${randChar}`)
+    } else if (userSelections[randParam] === 2) {
+      randChar = charNumeric[Math.floor(Math.random() * charNumeric.length)]
+      console.log(`TEST | FROM generatePassword | randNum:  ${randChar}`)
+    } else if (userSelections[randParam] === 3) {
+      randChar = charSpecial[Math.floor(Math.random() * charSpecial.length)]
+      console.log(`TEST | FROM generatePassword | randSpecial:  ${randChar}`)
+    }
+    // finalPw += randChar
+    randChar += finalPw
+  // passwordText.innerText = finalPw
+  }
   passwordText.innerText = finalPw
 }
