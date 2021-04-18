@@ -1,23 +1,31 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 var passwordLength = 0
-// var passwordText = document.querySelector("#password")
+var passwordText = document.querySelector("#password")
 
-// document.getElementById("password").value = 'placeholder'
+// var passwordDisplay = document.getElementById("password")
 // passwordText.setAttribute()
 // Write password to the #password input
+
+// Add event listener to generate button
+generateBtn.addEventListener("click", writePassword);
+
+// passwordText.innerText = ''
 function writePassword() {
   console.log(`TEST | writePassword HAS BEEN EXECUTED!`)
-  var password = userDefinedParams();
+  var passwordText = document.querySelector("#password")
+  passwordText.innerText = ''
+  var userSelections = userDefinedParams();
+  console.log(`TEST | FROM writePassword | ALL PARAMETERS:  ${userSelections}`)
   console.log(`TEST | userDefinedParams HAS BEEN EXECUTED`)
   var passwordText = document.querySelector("#password");
-
+  var password = generatePassword(userSelections);
+  
 
 
 }
 
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+
 
 function userDefinedParams() {
   console.log(`TEST | generatePassword HAS BEEN INITIATED`)
@@ -83,7 +91,7 @@ function userDefinedParams() {
       while (charSelectSpec !== 'Y' && charSelectSpec !== 'N') {
         console.log(`TEST | throw error for invalid character entry`)
         window.alert(`User entered ${charSelectSpec} which is not a valid selection\nPlease enter selection again`)
-        charSelectnum = window.prompt(`Include special characters? (!"#$%&'()*+,-./:;<=>?@[^_ etc.)\nEnter "y" (for "Yes, include")\nEnter "n" (for "No, do not include")`).toUpperCase() || 'N'
+        charSelectSpec = window.prompt(`Include special characters? (!"#$%&'()*+,-./:;<=>?@[^_ etc.)\nEnter "y" (for "Yes, include")\nEnter "n" (for "No, do not include")`).toUpperCase() || 'N'
       }
     }
     console.log(`TEST | SPECIAL CHAR while LOOP SUCCESS`)
@@ -94,10 +102,47 @@ function userDefinedParams() {
     console.log(`TEST | NUMERIC:    ${charSelectNum}`)
     console.log(`TEST | SPECIAL:    ${charSelectSpec}`)
 
+    var userDefinedParamsAll = [charSelectLc, charSelectUc, charSelectNum, charSelectSpec]
     retry = false
+    return userDefinedParamsAll
   }
 }
 
-function generatePassword() {
+function generatePassword(userSelections) {
+  console.log(`TEST | FROM generatePassword | ALL PARAMETERS:  ${userSelections}`)
+  console.log(`TEST | FROM generatePassword | passwordLength:  ${passwordLength}`)
+  // LIBRARY
+  var parameters = ['LC', 'UC', 'NUM', 'SPC']
+  var charLowerCase = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+  var charUpperCase = charLowerCase.map(function (i) {
+    return i.toUpperCase()
+  });
+  var charNumeric = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+  var charSpecial = ['\"', '!', '#', '$', '%', '&', '\'', '(', ')', '*', '+', '-', '.', '/', ':', ';', '<', '=', '>', '?', '@', '[', '\\', ']', '^', '_', '`', '{', '|', '}', '~']
+  console.log(`TEST | FROM generatePassword | DISPLAY charLowerCase AND charUpperCase TO VERIFY toUpperCase METHOD WORKS:`)
 
+  console.log(`TEST | FROM generatePassword | charLowerCase:  ${charLowerCase}`)
+  console.log(`TEST | FROM generatePassword | charUpperCase:  ${charUpperCase}`)
+  console.log(`TEST | FROM generatePassword | charNumeric:  ${charNumeric}`)
+  console.log(`TEST | FROM generatePassword | charSpecial:  ${charSpecial}`)
+
+  // var stagingPwA
+  var stagingPwB = ''
+  /* var stagingPwA = Math.floor(Math.random() * charLowerCase.length)
+  var stagingPwB = charLowerCase[stagingPwA]
+  passwordText.innerText = stagingPwB;
+  */
+  
+  console.log(`TEST | FROM generatePassword | passwordLength:  ${passwordLength}`)
+  for (var i = 0; i < passwordLength; i++) {
+    var index = Math.floor(Math.random() * charLowerCase.length)
+    var stagingPwA = charLowerCase[index];
+    console.log(`TEST | FROM for LOOP | stagingPwA:  ${stagingPwA}`)
+    stagingPwB += stagingPwA
+    console.log(`TEST | FROM for LOOP | stagingPwB:  ${stagingPwB}`)
+  }
+  passwordText.innerText = stagingPwB
+    
+  //}
+  return
 }
