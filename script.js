@@ -1,14 +1,14 @@
 var generateBtn = document.querySelector("#generate");
 var passwordText = document.querySelector("#password")
 generateBtn.addEventListener("click", writePassword);
+
 var passwordLength = 0
 
 function writePassword() {
-  var passwordText = document.querySelector("#password")
-  passwordText.innerText = ''
+  var passwordText = document.querySelector("#password");
+  passwordText.innerText = '';
   var userSelections = userDefinedParams();
-  // var passwordText = document.querySelector("#password");
-  var password = generatePassword(userSelections);
+  generatePassword(userSelections);
 }
 
 function userDefinedParams() {
@@ -21,55 +21,34 @@ function userDefinedParams() {
       passwordLength = window.prompt(`Welcome to the Password Generator\nEnter the desired length of the password (8 - 128 characters)`)
     }
     
-    // Lowercase parameter validation
     var charSelectLc = window.prompt(`Include lowercase alphabetic characters?\nEnter "y" (for "Yes, include")\nEnter "n" (for "No, do not include")`).toUpperCase() || 'N'
-    if (charSelectLc === "" || charSelectLc === null) {
-      charSelectLc === 'N'
-    } else {
       console.log(`Lowercase characters were specified?  ${charSelectLc}`)
       while (charSelectLc !== 'Y' && charSelectLc !== 'N') {
         window.alert(`User entered ${charSelectLc} which is not a valid selection\nPlease enter selection again`)
         charSelectLc = window.prompt(`Include lowercase alphabetic characters?\nEnter "y" (for "Yes, include")\nEnter "n" (for "No, do not include")`).toUpperCase() || 'N'
       }
-    }
 
-    // Uppercase parameter validation
     charSelectUc = window.prompt(`Include uppercase alphabetic characters?\nEnter "y" (for "Yes, include")\nEnter "n" (for "No, do not include")`).toUpperCase() || 'N'
-    if (charSelectUc === "" || charSelectUc === null) {
-      charSelectUc === 'N'
-    } else {
-      console.log(`TEST | uppercase - ${charSelectUc}`)
+      console.log(`Uppercase characters were specified?  ${charSelectUc}`)
       while (charSelectUc !== 'Y' && charSelectUc !== 'N') {
         window.alert(`User entered ${charSelectUc} which is not a valid selection\nPlease enter selection again`)
         charSelectUc = window.prompt(`Include uppercase alphabetic characters?\nEnter "y" (for "Yes, include")\nEnter "n" (for "No, do not include")`).toUpperCase() || 'N'
       }
-    }
 
-    // Numeric parameter validation
     charSelectNum = window.prompt(`Include numeric characters?\nEnter "y" (for "Yes, include")\nEnter "n" (for "No, do not include")`).toUpperCase() || 'N'
-    if (charSelectNum === "" || charSelectNum === null) {
-      charSelectNum === 'N'
-    } else {
       console.log(`Numeric characters were specified?  ${charSelectNum}`)
       while (charSelectNum !== 'Y' && charSelectNum !== 'N') {
         window.alert(`User entered ${charSelectNum} which is not a valid selection\nPlease enter selection again`)
         charSelectnum = window.prompt(`Include numeric characters?\nEnter "y" (for "Yes, include")\nEnter "n" (for "No, do not include")`).toUpperCase() || 'N'
       }
-    }
 
-    // Special character parameter validation
     charSelectSpec = window.prompt(`Include special characters? (!"#$%&'()*+,-./:;<=>?@[^_ etc.)\nEnter "y" (for "Yes, include")\nEnter "n" (for "No, do not include")`).toUpperCase() || 'N'
-    if (charSelectSpec === "" || charSelectSpec === null) {
-      charSelectSpec === 'N'
-    } else {
-      console.log(`TEST | special - ${charSelectSpec}`)
+      console.log(`Special characters were specified?  ${charSelectSpec}`)
       while (charSelectSpec !== 'Y' && charSelectSpec !== 'N') {
         window.alert(`User entered ${charSelectSpec} which is not a valid selection\nPlease enter selection again`)
         charSelectSpec = window.prompt(`Include special characters? (!"#$%&'()*+,-./:;<=>?@[^_ etc.)\nEnter "y" (for "Yes, include")\nEnter "n" (for "No, do not include")`).toUpperCase() || 'N'
       }
-    }
 
-    // FINAL RESULTS
     var userDefinedParamsAll = [charSelectLc, charSelectUc, charSelectNum, charSelectSpec]
     retry = false
     return userDefinedParamsAll
@@ -79,7 +58,6 @@ function userDefinedParams() {
 function generatePassword(userSelections) {
 
   // LIBRARY
-  var parameters = ['LC', 'UC', 'NUM', 'SPC']
   var charLowerCase = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
   var charUpperCase = charLowerCase.map(function (i) {
     return i.toUpperCase()
@@ -102,18 +80,16 @@ function generatePassword(userSelections) {
 
     if (randParam == 0) {
       randChar = charLowerCase[Math.floor(Math.random() * charLowerCase.length)]
-      console.log(`randLc:  ${randChar}`)
     } else if (randParam == 1) {
       randChar = charUpperCase[Math.floor(Math.random() * charUpperCase.length)]
-      console.log(`randUc:  ${randChar}`)
     } else if (randParam == 2) {
       randChar = charNumeric[Math.floor(Math.random() * charNumeric.length)]
-      console.log(`randNum:  ${randChar}`)
     } else if (randParam == 3) {
       randChar = charSpecial[Math.floor(Math.random() * charSpecial.length)]
-      console.log(`randSpecial:  ${randChar}`)
     } else {
+      window.alert(`Something went wrong in \"passwordGeneration\".  Please refresh and try again`)
       console.log(`Something went wrong in \"passwordGeneration\".  Please refresh and try again`)
+      break;
     }
     finalPw += randChar
   }
