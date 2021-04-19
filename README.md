@@ -20,13 +20,13 @@ These definitions must then be used to generate a random password that includes 
 
 1. Button must be used to initiate password generation
 2. User is prompted with password criteria:
-  * Length of password
-      - Length of password is between 8 and 128 characters
-  * Inclusion or exclusion of lowercase alphabetic characters
-  * Inclusion or exclusion of uppercase alphabetic characters
-  * Inclusion or exclusion of numeric characters
-  * Inclusion or exclusion of [Special Characters](https://owasp.org/www-community/password-special-characters)
-  * *All prompts are validated*
+    * Length of password
+        - Length of password is between 8 and 128 characters
+    * Inclusion or exclusion of lowercase alphabetic characters
+    * Inclusion or exclusion of uppercase alphabetic characters
+    * Inclusion or exclusion of numeric characters
+    * Inclusion or exclusion of [Special Characters](https://owasp.org/www-community/password-special-characters)
+    * *All prompts are validated*
   
 3. Password is generated with random characters matching user defined criteria
 4. Password is displayed on the page or in an alert
